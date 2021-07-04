@@ -310,11 +310,12 @@ namespace FuGetGallery
                 var n = e.FullName;
                 var isBuild = n.StartsWith ("build/", StringComparison.InvariantCultureIgnoreCase);
                 var isLib = n.StartsWith ("lib/", StringComparison.InvariantCultureIgnoreCase);
+                var isRef = n.StartsWith ("ref/", StringComparison.InvariantCultureIgnoreCase);
                 var isResources = n.EndsWith (".resources.dll", StringComparison.InvariantCultureIgnoreCase);
-                if ((isBuild || isLib) && (n.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase) ||
-                                           n.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
-                                           n.EndsWith(".xml", StringComparison.InvariantCultureIgnoreCase))
-                                       && !isResources) {
+                if ((isBuild || isLib || isRef) && (n.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase) ||
+                                                    n.EndsWith(".exe", StringComparison.InvariantCultureIgnoreCase) ||
+                                                    n.EndsWith(".xml", StringComparison.InvariantCultureIgnoreCase))
+                                                && !isResources) {
                     var parts = n.Split ('/', StringSplitOptions.RemoveEmptyEntries);
                     string tfm;
                     if (parts.Length >= 3) {
